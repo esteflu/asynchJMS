@@ -14,9 +14,9 @@ public class Starter {
         JmsMessageSender jmsMessageSender = (JmsMessageSender) context.getBean("jmsMessageSender");
         jmsMessageSender.send("Sending a message to: " + JmsMessageListener.class.getName());
 
-        // sleep for 1 second
+        // sleep for 3 seconds
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
