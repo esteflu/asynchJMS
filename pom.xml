@@ -52,7 +52,7 @@
                 <artifactId>maven-activemq-plugin</artifactId>
                 <version>5.7.0</version>
                 <configuration>
-                    <!--<configUri>xbean:file:../conf/activemq.xml</configUri>-->
+                    <!--<configUri>xbean:activemq.xml</configUri>-->
                     <fork>false</fork>
                     <systemProperties>
                         <property>
