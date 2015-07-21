@@ -21,6 +21,8 @@ public class Starter {
             e.printStackTrace();
         }
 
+        //TODO consume reply ack message
+
         ((ClassPathXmlApplicationContext) context).close();
     }
 }
