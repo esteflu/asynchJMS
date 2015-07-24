@@ -16,8 +16,8 @@ public class JmsMessageListener implements SessionAwareMessageListener<TextMessa
         System.out.println("Incoming message: "+ message.getText());
 
         // Acknowledge incoming message
-        MessageProducer producer = session.createProducer(message.getJMSReplyTo());
-        producer.send(getReplyMessage("ACK for incoming message: " + message.getText()));
+        session.createProducer(message.getJMSReplyTo())
+                .send(getReplyMessage("ACK for: " + message.getText()));
     }
 
     private ActiveMQTextMessage getReplyMessage(String replyMessage) throws MessageNotWriteableException {
