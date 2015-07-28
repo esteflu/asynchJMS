@@ -30,6 +30,7 @@ public class JmsMessageSender implements SessionAwareMessageListener<TextMessage
     @Override
     public void onMessage(TextMessage textMessage, Session session) throws JMSException {
         //Consume ack
-        System.out.println(textMessage.getText());
+        System.out.println("Ack content: " + textMessage.getText());
+        System.out.println("Correlation Id: " + textMessage.getJMSCorrelationID());
     }
 }

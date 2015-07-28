@@ -13,16 +13,18 @@ public class JmsMessageListener implements SessionAwareMessageListener<TextMessa
     @Override
     public void onMessage(TextMessage message, Session session) throws JMSException {
         // Incoming message
-        System.out.println("Incoming message: "+ message.getText());
+        System.out.println("Incoming content: "+ message.getText());
+        System.out.println("Incoming Message Id: "+ message.getJMSMessageID());
 
         // Acknowledge incoming message
         session.createProducer(message.getJMSReplyTo())
-                .send(getReplyMessage("ACK for: " + message.getText()));
+                .send(getReplyMessage(message));
     }
 
-    private ActiveMQTextMessage getReplyMessage(String replyMessage) throws MessageNotWriteableException {
+    private ActiveMQTextMessage getReplyMessage(TextMessage replyMessage) throws JMSException {
         ActiveMQTextMessage textMessage = new ActiveMQTextMessage();
-        textMessage.setText(replyMessage);
+        textMessage.setText("Ack: " + replyMessage.getText());
+        textMessage.setCorrelationId(replyMessage.getJMSMessageID());
         return textMessage;
     }
 }
